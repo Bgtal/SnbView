@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:snb="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="改变进度值" />
+
+        <SeekBar
+            android:id="@+id/progress_seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <blq.ssnb.snbview.SnbGradientProgressView
+            android:id="@+id/progress_progress_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            snb:snb_progress="88" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="固定宽高（w:150;h:50）的view" />
+
+        <blq.ssnb.snbview.SnbGradientProgressView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            snb:snb_max="200"
+            snb:snb_progress="50" />
+
+        <TextView
+            android:id="@+id/progress_btn_thread"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/icon_menu_item_bg"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="子线程中改变值" />
+
+        <blq.ssnb.snbview.SnbGradientProgressView
+            android:id="@+id/progress_progress_thread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="改变参数" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最大值" />
+
+            <EditText
+                android:id="@+id/ll_ll_edt_max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:text="100" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前值" />
+
+            <EditText
+                android:id="@+id/ll_ll_edt_cur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:text="100" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="进度值" />
+
+            <EditText
+
+                android:id="@+id/ll_ll_edt_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:text="100" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/progress_btn_change"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/icon_menu_item_bg"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="改变" />
+
+        <blq.ssnb.snbview.SnbGradientProgressView
+            android:id="@+id/progress_progress_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</ScrollView>

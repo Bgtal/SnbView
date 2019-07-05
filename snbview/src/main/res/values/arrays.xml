@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="snb_gradient_text_color_def">
+        <item>#FF0000</item>
+        <item>#FF3030</item>
+        <item>#FF4040</item>
+        <item>#FF7F24</item>
+        <item>#FFC125</item>
+        <item>#CDCD00</item>
+        <item>#C0FF3E</item>
+        <item>#00FF00</item>
+        <item>#9ACD32</item>
+        <item>#90EE90</item>
+        <item>#B2DFEE</item>
+        <item>#8DB6CD</item>
+        <item>#8470FF</item>
+        <item>#7B68EE</item>
+        <item>#4876FF</item>
+        <item>#4169E1</item>
+        <item>#0000EE</item>
+        <item>#0000FF</item>
+    </array>
+</resources>

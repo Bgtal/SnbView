@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- <editor-fold defaultstate="collapsed" desc="常用的参数"> -->
+
+    <attr name="snb_text" format="string|reference" />
+    <attr name="snb_textSize" format="dimension|reference" />
+    <attr name="snb_textColor" format="color|reference" />
+
+    <attr name="snb_hint" format="string|reference" />
+    <attr name="snb_hintSize" format="dimension" />
+    <attr name="snb_hintColor" format="color|reference" />
+
+    <attr name="snb_animDuration" format="integer" />
+
+    <!-- </editor-fold> -->
+
+    <!--<editor-fold defaultstate="collapsed" desc="SnbLineView">-->
+    <declare-styleable name="SnbLineView">
+        <attr name="snb_line_color" format="reference|color" />
+        <attr name="snb_orientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <attr name="SnbLineViewStyle" format="reference" />
+
+    <style name="DefSnbLineViewStyle">
+        <item name="snb_line_color">@color/sview_grey_500</item>
+        <item name="snb_orientation">horizontal</item>
+    </style>
+    <!--</editor-fold>-->
+
+    <!-- <editor-fold defaultstate="collapsed" desc="SnbDrawableTextView"> -->
+
+    <declare-styleable name="SnbDrawableTextView">
+        <attr name="snb_left_width" format="dimension|reference" />
+        <attr name="snb_left_height" format="dimension|reference" />
+        <attr name="snb_top_width" format="dimension|reference" />
+        <attr name="snb_top_height" format="dimension|reference" />
+        <attr name="snb_right_width" format="dimension|reference" />
+        <attr name="snb_right_height" format="dimension|reference" />
+        <attr name="snb_bottom_width" format="dimension|reference" />
+        <attr name="snb_bottom_height" format="dimension|reference" />
+
+    </declare-styleable>
+    <attr name="SnbDrawableTextViewStyle" format="reference" />
+
+    <style name="DefSnbDrawableTextViewStyle">
+        <item name="snb_left_width">24dp</item>
+        <item name="snb_left_height">24dp</item>
+        <item name="snb_top_width">24dp</item>
+        <item name="snb_top_height">24dp</item>
+        <item name="snb_right_width">24dp</item>
+        <item name="snb_right_height">24dp</item>
+        <item name="snb_bottom_width">24dp</item>
+        <item name="snb_bottom_height">24dp</item>
+
+    </style>
+
+    <!-- </editor-fold> -->
+
+    <!-- <editor-fold defaultstate="collapsed" desc="SnbSmartSearchEdit"> -->
+
+    <declare-styleable name="SnbSmartSearchEdit">
+        <attr name="snb_text" />
+        <attr name="snb_textSize" />
+        <attr name="snb_textColor" />
+        <attr name="snb_hint" />
+        <attr name="snb_hintColor" />
+        <attr name="snb_searchIcon" format="reference" />
+        <attr name="snb_clearBtnIcon" format="reference" />
+        <attr name="snb_autoSearch" format="boolean" />
+        <attr name="snb_autoSearchIntervalTime" format="integer" />
+        <attr name="snb_focusLostAutoSearch" format="boolean" />
+        <attr name="snb_smartClearBtn" format="boolean" />
+        <attr name="snb_alwaysShowClearBtn" format="boolean" />
+
+    </declare-styleable>
+    <attr name="SnbSmartSearchEditStyle" format="reference" />
+
+    <style name="DefSnbSmartSearchEditStyle">
+        <item name="snb_hint">搜索</item>
+        <item name="snb_textSize">14sp</item>
+        <item name="snb_textColor">#FF444444</item>
+        <item name="snb_hintColor">#FF949494</item>
+        <item name="snb_searchIcon">@drawable/snb_ic_search_black_24dp</item>
+        <item name="snb_clearBtnIcon">@drawable/snb_ic_clear_black_24dp</item>
+        <item name="snb_autoSearch">true</item>
+        <item name="snb_autoSearchIntervalTime">1500</item>
+        <item name="snb_focusLostAutoSearch">false</item>
+        <item name="snb_smartClearBtn">true</item>
+        <item name="snb_alwaysShowClearBtn">false</item>
+
+    </style>
+    <!-- </editor-fold> -->
+
+    <!-- <editor-fold defaultstate="collapsed" desc="SnbExpandableTextView"> -->
+
+
+    <declare-styleable name="SnbExpandableTextView">
+
+        <attr name="snb_text" />
+        <attr name="snb_foldShowLine" format="integer" />
+        <attr name="snb_textSize" />
+        <attr name="snb_foldStatusSrc" format="reference" />
+        <attr name="snb_expandStatusSrc" format="reference" />
+        <attr name="snb_animDuration" />
+        <attr name="snb_isFold" format="boolean" />
+        <attr name="snb_textColor" />
+    </declare-styleable>
+    <attr name="SnbExpandableTextViewStyle" format="reference" />
+
+    <style name="DefSnbExpandableTextViewStyle">
+        <item name="snb_foldShowLine">3</item>
+        <item name="snb_textSize">14dp</item>
+        <item name="snb_foldStatusSrc">@drawable/snb_ic_expand_more_black_24dp</item>
+        <item name="snb_expandStatusSrc">@drawable/snb_ic_expand_less_black_24dp</item>
+        <item name="snb_animDuration">300</item>
+        <item name="snb_isFold">true</item>
+        <item name="snb_textColor">@color/sview_black</item>
+    </style>
+    <!-- </editor-fold> -->
+
+    <!-- <editor-fold defaultstate="collapsed" desc="SnbCountDownView"> -->
+
+    <declare-styleable name="SnbCountDownView">
+        <attr name="snb_totalTime" format="integer" />
+        <attr name="snb_interval" format="integer" />
+        <attr name="snb_initialText" format="string" />
+        <attr name="snb_finishText" format="string" />
+    </declare-styleable>
+
+    <attr name="SnbCountDownViewStyle" format="reference" />
+
+    <style name="DefSnbCountDownViewStyle">
+        <item name="snb_totalTime">60</item>
+        <item name="snb_interval">1000</item>
+        <item name="snb_initialText">点击倒计时</item>
+        <item name="snb_finishText">重新计时</item>
+    </style>
+    <!-- </editor-fold> -->
+
+    <!-- <editor-fold defaultstate="collapsed" desc="SnbGradientProgressView"> -->
+
+    <declare-styleable name="SnbGradientProgressView">
+        <attr name="snb_max" format="integer|reference" />
+        <attr name="snb_progress" format="integer|reference" />
+
+    </declare-styleable>
+    <attr name="SnbGradientProgressViewStyle" format="reference" />
+
+    <style name="DefSnbGradientProgressViewStyle">
+        <item name="snb_max">100</item>
+        <item name="snb_progress">50</item>
+    </style>
+    <!-- </editor-fold> -->
+
+    <!-- <editor-fold defaultstate="collapsed" desc="SnbGradientTextView"> -->
+    <declare-styleable name="SnbGradientTextView">
+        <attr name="snb_color" format="reference" />
+    </declare-styleable>
+
+    <attr name="SnbGradientTextViewStyle" format="reference" />
+
+    <style name="DefSnbGradientTextViewStyle">
+        <item name="snb_color">@array/snb_gradient_text_color_def</item>
+    </style>
+    <!-- </editor-fold> -->
+
+</resources>

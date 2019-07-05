@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_expand_change_content_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/icon_menu_item_bg"
+                    android:padding="4dp"
+                    android:text="修改内容:长恨歌" />
+
+                <TextView
+                    android:id="@+id/tv_expand_change_expand_fold_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/icon_menu_item_bg"
+                    android:padding="4dp"
+                    android:text="开关：展开" />
+
+                <TextView
+                    android:id="@+id/tv_expand_change_flod_show_line_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/icon_menu_item_bg"
+                    android:padding="4dp"
+                    android:text="修改显示行数:3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_expand_change_expand_icon_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/icon_menu_item_bg"
+                    android:padding="4dp"
+                    android:text="修改关闭按钮" />
+
+                <TextView
+                    android:id="@+id/tv_expand_change_flod_icon_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/icon_menu_item_bg"
+                    android:padding="4dp"
+                    android:text="修改展开按钮" />
+
+                <TextView
+                    android:id="@+id/tv_expand_change_anim_duration_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/icon_menu_item_bg"
+                    android:padding="4dp"
+                    android:text="动画持续时间:1000" />
+            </LinearLayout>
+
+            <blq.ssnb.snbview.SnbExpandableTextView
+                android:id="@+id/etv_expand_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00ff00"
+                app:snb_text="@string/expandable_text_content_cjhyy" />
+
+            <blq.ssnb.snbview.SnbExpandableTextView
+                android:id="@+id/etv_expand_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff000"
+                app:snb_animDuration="1000"
+                app:snb_expandStatusSrc="@drawable/ic_arrow_left_black_24dp"
+                app:snb_foldShowLine="4"
+                app:snb_foldStatusSrc="@drawable/ic_arrow_right_black_24dp"
+                app:snb_isFold="true"
+                app:snb_text="@string/expandable_text_content_chg"
+                app:snb_textColor="#00f00f"
+                app:snb_textSize="14sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

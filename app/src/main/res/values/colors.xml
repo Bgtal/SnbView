@@ -3,4 +3,25 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+
+    <array name="gradient_item0">
+        <item>#232223</item>
+        <item>#444433</item>
+        <item>#123122</item>
+        <item>#ff3234</item>
+        <item>#52f3e4</item>
+        <item>#23b343</item>
+    </array>
+    <array name="gradient_item1">
+        <item>#FFB6C1</item>
+        <item>#FF82AB</item>
+        <item>#EEAD0E</item>
+        <item>#EE2C2C</item>
+        <item>#D02090</item>
+        <item>#8B6969</item>
+        <item>#8B0A50</item>
+        <item>#7171C6</item>
+        <item>#43CD80</item>
+    </array>
 </resources>

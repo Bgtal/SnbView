@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ssnb="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <blq.ssnb.snbview.SnbGradientTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我是默认颜色!我是自适应宽度的view" />
+
+    <blq.ssnb.snbview.SnbGradientTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="我是默认颜色!我充满整个屏幕" />
+
+    <blq.ssnb.snbview.SnbGradientTextView
+        android:id="@+id/gradient_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="我是测试的字体哦！我会变颜色的\n我要换行了"
+        android:textSize="20sp"
+        ssnb:snb_color="@array/gradient_item0" />
+
+    <blq.ssnb.snbview.SnbGradientTextView
+        android:id="@+id/gradient_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我是测试的字体哦！我会变颜色的\n我要换行了"
+        android:textSize="20sp"
+        ssnb:snb_color="@array/gradient_item0" />
+
+    <blq.ssnb.snbview.SnbGradientTextView
+        android:id="@+id/gradient_set1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:background="@drawable/icon_menu_item_bg"
+        android:padding="4dp"
+        android:text="设置成我这样的颜色"
+        ssnb:snb_color="@array/gradient_item1" />
+
+    <TextView
+        android:id="@+id/gradient_set2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:background="@drawable/icon_menu_item_bg"
+        android:padding="4dp"
+        android:text="代码设置颜色" />
+
+</LinearLayout>

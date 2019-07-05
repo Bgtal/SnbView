@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <blq.ssnb.snbview.SnbSmartSearchEdit
+        android:id="@+id/smart_search_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:snb_hint="默认的搜索框" />
+
+
+    <blq.ssnb.snbview.SnbSmartSearchEdit
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:snb_alwaysShowClearBtn="true"
+        app:snb_autoSearch="false"
+        app:snb_autoSearchIntervalTime="1000"
+        app:snb_clearBtnIcon="@drawable/ic_arrow_left_black_24dp"
+        app:snb_focusLostAutoSearch="false"
+        app:snb_hint="完整参数的搜索框"
+        app:snb_searchIcon="@drawable/ic_arrow_right_black_24dp"
+        app:snb_smartClearBtn="true"
+        app:snb_text="完整参数的搜索框"
+        app:snb_textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_info_show_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="start"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:scrollbars="vertical"
+        tools:text="搜索回调展示界面" />
+</LinearLayout>
