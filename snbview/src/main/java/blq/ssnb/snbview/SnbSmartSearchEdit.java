@@ -84,6 +84,7 @@ public class SnbSmartSearchEdit extends LinearLayout {
         searchOption.isSmartClearButton = typedArray.getBoolean(R.styleable.SnbSmartSearchEdit_snb_smartClearBtn, searchOption.isSmartClearButton);
         searchOption.isFocusLostSearch = typedArray.getBoolean(R.styleable.SnbSmartSearchEdit_snb_focusLostAutoSearch, searchOption.isFocusLostSearch);
         searchOption.isAlwaysShowClearBtn = typedArray.getBoolean(R.styleable.SnbSmartSearchEdit_snb_alwaysShowClearBtn, searchOption.isAlwaysShowClearBtn);
+        searchOption.isAutoShowSoftInput = typedArray.getBoolean(R.styleable.SnbSmartSearchEdit_snb_autoShowSoftInput, searchOption.isAutoShowSoftInput);
         typedArray.recycle();
     }
 
@@ -120,6 +121,9 @@ public class SnbSmartSearchEdit extends LinearLayout {
                     searchOption.onLostFocusSearch(searchOption.nowContentStr);
                 }//否则什么都不干
                 hideSoftInput();
+            }
+            if (mOnFocusChangeListener != null) {
+                mOnFocusChangeListener.onFocusChange(v, hasFocus);
             }
         });
 
@@ -184,8 +188,10 @@ public class SnbSmartSearchEdit extends LinearLayout {
      * 显示软键盘
      */
     private void showSoftInput() {
-        imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        if (searchOption.isAutoShowSoftInput) {
+            imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        }
     }
 
     /**
@@ -255,6 +261,10 @@ public class SnbSmartSearchEdit extends LinearLayout {
         private boolean isFocusLostSearch = false;
 
         private boolean isAlwaysShowClearBtn = false;
+        /**
+         * 是否自动显示input
+         */
+        private boolean isAutoShowSoftInput = true;
 
         private OnClickListener onClearBtnClickListener;
 
@@ -415,7 +425,6 @@ public class SnbSmartSearchEdit extends LinearLayout {
         editText.setHintTextColor(hintTextColor);
     }
 
-
     /**
      * 设置坐标的搜索按钮图标
      *
@@ -527,6 +536,12 @@ public class SnbSmartSearchEdit extends LinearLayout {
         }
     }
 
+    private OnFocusChangeListener mOnFocusChangeListener;
+
+    public void setOnFocusChangeListener(OnFocusChangeListener listener) {
+        mOnFocusChangeListener = listener;
+    }
+
     /**
      * 查询的返回监听
      */
@@ -552,4 +567,5 @@ public class SnbSmartSearchEdit extends LinearLayout {
          */
         void onAutoSearch(String searchKey);
     }
+
 }

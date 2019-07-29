@@ -76,6 +76,7 @@
         <attr name="snb_focusLostAutoSearch" format="boolean" />
         <attr name="snb_smartClearBtn" format="boolean" />
         <attr name="snb_alwaysShowClearBtn" format="boolean" />
+        <attr name="snb_autoShowSoftInput" format="boolean" />
 
     </declare-styleable>
     <attr name="SnbSmartSearchEditStyle" format="reference" />

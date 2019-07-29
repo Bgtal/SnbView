@@ -40,6 +40,7 @@ public class SnbDrawableTextView extends AppCompatTextView {
     public SnbDrawableTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs, defStyleAttr);
+        setCompoundDrawables(getLeftDrawableCompound().mDrawable, getTopDrawableCompound().mDrawable, getRightDrawableCompound().mDrawable, getBottomDrawableCompound().mDrawable);
     }
 
     private void initAttrs(Context context, AttributeSet attrs, int defStyleAttr) {

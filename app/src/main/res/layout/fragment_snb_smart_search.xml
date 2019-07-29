@@ -10,6 +10,7 @@
         android:id="@+id/smart_search_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:snb_autoShowSoftInput="false"
         app:snb_hint="默认的搜索框" />
 
 
@@ -26,6 +27,27 @@
         app:snb_smartClearBtn="true"
         app:snb_text="完整参数的搜索框"
         app:snb_textSize="20dp" />
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_request_focus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获得焦点"
+                style="@style/Widget.AppCompat.Button.Small"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获得焦点"
+                style="@style/Widget.AppCompat.Button.Small"/>
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <TextView
         android:id="@+id/tv_info_show_view"

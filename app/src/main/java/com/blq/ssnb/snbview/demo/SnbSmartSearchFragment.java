@@ -7,6 +7,7 @@ import com.blq.ssnb.snbview.R;
 
 import blq.ssnb.baseconfigure.BaseFragment;
 import blq.ssnb.snbview.SnbSmartSearchEdit;
+import blq.ssnb.snbview.listener.OnIntervalClickListener;
 
 /**
  * <pre>
@@ -28,6 +29,8 @@ public class SnbSmartSearchFragment extends BaseFragment {
 
     private StringBuilder infoBuilder;
 
+    private View requestFocusBtn;
+
 
     @Override
     protected int rootLayout() {
@@ -38,6 +41,7 @@ public class SnbSmartSearchFragment extends BaseFragment {
     protected void initView(View view) {
         smartSearchEdit = view.findViewById(R.id.smart_search_edit);
         infoShowView = view.findViewById(R.id.tv_info_show_view);
+        requestFocusBtn = view.findViewById(R.id.tv_request_focus);
     }
 
     @Override
@@ -61,6 +65,12 @@ public class SnbSmartSearchFragment extends BaseFragment {
             @Override
             public void onAutoSearch(String searchKey) {
                 showSearchInfo("自动搜索:" + searchKey);
+            }
+        });
+        requestFocusBtn.setOnClickListener(new OnIntervalClickListener() {
+            @Override
+            public void onEffectiveClick(View v) {
+                smartSearchEdit.focusObtain();
             }
         });
     }
