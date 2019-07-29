@@ -10,7 +10,7 @@ allprojects {
     }
 }
 ```
-> implementation 'com.github.Bgtal:SnbView:0.0.8'
+> implementation 'com.github.Bgtal:SnbView:version'
 
 ## 项目依赖
 * 使用的时候需要在自己的项目中引用下面的包，不然会报错
