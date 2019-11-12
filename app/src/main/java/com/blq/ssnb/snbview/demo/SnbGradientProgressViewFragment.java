@@ -152,7 +152,9 @@ public class SnbGradientProgressViewFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        progressThread.interrupt();
+        if(progressThread != null){
+            progressThread.interrupt();
+        }
     }
 
 }

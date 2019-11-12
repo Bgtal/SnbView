@@ -2,6 +2,7 @@ package com.blq.ssnb.snbview;
 
 import android.support.v4.app.Fragment;
 
+import com.blq.ssnb.snbview.demo.SnbAddSubLogicHelperFragment;
 import com.blq.ssnb.snbview.demo.SnbCountDownViewFragment;
 import com.blq.ssnb.snbview.demo.SnbDrawableTextViewFragment;
 import com.blq.ssnb.snbview.demo.SnbExpandableTextViewFragment;
@@ -48,6 +49,9 @@ public class MainActivity extends SimpleMenuActivity {
         beanList.add(new MenuBean()
                 .setMenuTitle("SnbGradientTextView")
                 .setOnClickListener(v -> startToFragment(SnbGradientTextViewFragment.class)));
+        beanList.add(new MenuBean()
+                .setMenuTitle("SnbAddSubLogicHelperFragment")
+                .setOnClickListener(v -> startToFragment(SnbAddSubLogicHelperFragment.class)));
         return beanList;
     }
 

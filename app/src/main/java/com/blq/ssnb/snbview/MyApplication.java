@@ -1,7 +1,9 @@
 package com.blq.ssnb.snbview;
 
 import blq.ssnb.baseconfigure.AbsApplication;
+import blq.ssnb.baseconfigure.LogManager;
 import blq.ssnb.snbutil.SnbLog;
+import blq.ssnb.snbutil.SnbToast;
 
 /**
  * <pre>
@@ -19,6 +21,8 @@ public class MyApplication extends AbsApplication {
     @Override
     protected void initSnb() {
         SnbLog.getGlobalBuilder().isOpen(true);
+        SnbToast.init(this);
+        LogManager.openLog(false,false);
     }
 
     @Override

@@ -35,4 +35,6 @@ dependencies {
     implementation rootProject.ext.libs.BaseConfigure
     implementation rootProject.ext.libs.recyclerview
 
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-2'
+
 }
