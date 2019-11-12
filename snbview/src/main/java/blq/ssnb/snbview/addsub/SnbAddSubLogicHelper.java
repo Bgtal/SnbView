@@ -86,6 +86,7 @@ public class SnbAddSubLogicHelper {
 
     /**
      * 文字
+     *
      * @param temp
      */
     private void updateText(int temp) {
@@ -120,7 +121,7 @@ public class SnbAddSubLogicHelper {
     /**
      * 重置
      */
-    public void reset(){
+    public void reset() {
         updateText(mOption.defaultNumber);
     }
 
@@ -174,7 +175,7 @@ public class SnbAddSubLogicHelper {
         private int topLimit = 100;
         private int bottomLimit = 0;
         private int step = 1;
-        private int currentNumber = 1;
+        private int currentNumber = 0;
         private int defaultNumber = 1;
 
         public int getTopLimit() {
@@ -214,6 +215,7 @@ public class SnbAddSubLogicHelper {
                 this.topLimit = option.topLimit;
                 this.bottomLimit = option.bottomLimit;
                 this.step = option.step;
+                this.defaultNumber = option.defaultNumber;
             }
         }
     }

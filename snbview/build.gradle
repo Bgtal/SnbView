@@ -11,7 +11,7 @@ android {
         versionCode 10
         versionName "0.0.10"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -30,6 +30,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly rootProject.ext.libs.appcompat
-    compileOnly rootProject.ext.libs.snbutil
+    compileOnly rootProject.ext.libs.appcompat_x
+    compileOnly rootProject.ext.libs.snbutilx
 }

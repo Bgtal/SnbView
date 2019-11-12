@@ -1,7 +1,7 @@
 package blq.ssnb.snbview.shape;
 
 import android.graphics.drawable.GradientDrawable;
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
 /**
  * ================================================

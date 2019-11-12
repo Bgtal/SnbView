@@ -1,17 +1,14 @@
 package com.blq.ssnb.snbview.demo;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.blq.ssnb.snbview.MainActivity;
 import com.blq.ssnb.snbview.R;
 
 import blq.ssnb.baseconfigure.BaseFragment;
-import blq.ssnb.snbutil.SnbLog;
 import blq.ssnb.snbutil.SnbToast;
 import blq.ssnb.snbview.addsub.ActionCallBack;
 import blq.ssnb.snbview.addsub.SnbAddSubLogicHelper;

@@ -3,8 +3,8 @@ package blq.ssnb.snbview.guideview;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Path;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import android.view.View;
 
 /**
