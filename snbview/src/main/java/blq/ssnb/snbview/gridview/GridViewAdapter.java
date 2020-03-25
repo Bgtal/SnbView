@@ -74,10 +74,6 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
         Log.e(">>>>", position + ":" + bean.toString());
         mViewHolder.deleteBtn.setOnClickListener(v -> removeItem(mViewHolder.getAdapterPosition()));
         mViewHolder.updateDeleteView(mOption.getDelBtnID());
-        if (mOption.getImageLoader() != null) {
-            //加载图片
-            mOption.getImageLoader().display(bean.getUrl(), mViewHolder.picImageView);
-        }
 
         if (bean.getFlag() == IGridItemBean.FLAG_IMG_BTN) {
             mViewHolder.deleteBtn.setVisibility(View.GONE);
@@ -86,6 +82,7 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
                     mOption.getActionListener().onAddBtnClick(v);
                 }
             });
+            mViewHolder.picImageView.setImageURI(Uri.parse(bean.getUrl()));
         } else {
             mViewHolder.deleteBtn.setVisibility(View.VISIBLE);
             mViewHolder.picImageView.setOnClickListener(v -> {
@@ -93,6 +90,10 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
                     mOption.getActionListener().onItemClick(v, mViewHolder.getAdapterPosition());
                 }
             });
+            if (mOption.getImageLoader() != null) {
+                //加载图片
+                mOption.getImageLoader().display(bean.getUrl(), mViewHolder.picImageView);
+            }
         }
         if (mOption.isJustShow()) {
             mViewHolder.deleteBtn.setVisibility(View.GONE);
