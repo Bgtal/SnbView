@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+    <TextView
+        android:id="@+id/tv_btn_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_margin="2dp"
+        android:gravity="center"
+        android:text="LineShape"/>
+
+    <TextView
+        android:id="@+id/tv_btn_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_margin="2dp"
+        android:gravity="center"
+        android:text="OvalShape"/>
+
+    <TextView
+        android:id="@+id/tv_btn_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_margin="2dp"
+        android:gravity="center"
+        android:text="RectangleShape"/>
+
+    <TextView
+        android:id="@+id/tv_btn_four"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:padding="8dp"
+        android:layout_margin="2dp"
+        android:gravity="center"
+        android:text="RingShape"/>
+
+    <TextView
+        android:id="@+id/tv_btn_five"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_demo"
+        android:padding="8dp"
+        android:layout_margin="2dp"
+        android:gravity="center"
+        android:text="RingShape"/>
+
+
+
+</LinearLayout>

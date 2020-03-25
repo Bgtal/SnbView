@@ -8,7 +8,9 @@ import com.blq.ssnb.snbview.demo.SnbDrawableTextViewFragment;
 import com.blq.ssnb.snbview.demo.SnbExpandableTextViewFragment;
 import com.blq.ssnb.snbview.demo.SnbGradientProgressViewFragment;
 import com.blq.ssnb.snbview.demo.SnbGradientTextViewFragment;
+import com.blq.ssnb.snbview.demo.SnbGridViewFragment;
 import com.blq.ssnb.snbview.demo.SnbLineViewFragment;
+import com.blq.ssnb.snbview.demo.SnbShapeFragment;
 import com.blq.ssnb.snbview.demo.SnbSmartSearchFragment;
 
 import java.util.ArrayList;
@@ -50,8 +52,14 @@ public class MainActivity extends SimpleMenuActivity {
                 .setMenuTitle("SnbGradientTextView")
                 .setOnClickListener(v -> startToFragment(SnbGradientTextViewFragment.class)));
         beanList.add(new MenuBean()
-                .setMenuTitle("SnbAddSubLogicHelperFragment")
+                .setMenuTitle("SnbAddSubLogicHelper")
                 .setOnClickListener(v -> startToFragment(SnbAddSubLogicHelperFragment.class)));
+        beanList.add(new MenuBean()
+                .setMenuTitle("SnbShape")
+                .setOnClickListener(v -> startToFragment(SnbShapeFragment.class)));
+        beanList.add(new MenuBean()
+                .setMenuTitle("SnbGridView")
+                .setOnClickListener(v -> startToFragment(SnbGridViewFragment.class)));
         return beanList;
     }
 

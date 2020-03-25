@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 10
-        versionName "0.0.10"
+        versionCode 11
+        versionName "0.0.11"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -32,4 +32,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly rootProject.ext.libs.appcompat_x
     compileOnly rootProject.ext.libs.snbutilx
+    compileOnly rootProject.ext.libs.recyclerview_x
+    compileOnly rootProject.ext.libs.constraintlayout
 }

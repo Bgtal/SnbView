@@ -12,6 +12,7 @@
     <attr name="snb_hintColor" format="color|reference" />
 
     <attr name="snb_animDuration" format="integer" />
+    <attr name="snb_max" format="integer|reference" />
 
     <!-- </editor-fold> -->
 
@@ -146,7 +147,7 @@
     <!-- <editor-fold defaultstate="collapsed" desc="SnbGradientProgressView"> -->
 
     <declare-styleable name="SnbGradientProgressView">
-        <attr name="snb_max" format="integer|reference" />
+        <attr name="snb_max" />
         <attr name="snb_progress" format="integer|reference" />
 
     </declare-styleable>
@@ -169,5 +170,28 @@
         <item name="snb_color">@array/snb_gradient_text_color_def</item>
     </style>
     <!-- </editor-fold> -->
+
+    <!-- <editor-fold defaultstate="collapsed" desc="SnbGridView"> -->
+    <declare-styleable name="SnbGridView">
+        <attr name="snb_column" format="integer|reference" />
+        <attr name="snb_can_drag" format="boolean|reference" />
+        <attr name="snb_max" />
+        <attr name="snb_show_only" format="boolean|reference" />
+        <attr name="snb_close_draw_id" format="reference" />
+        <attr name="snb_add_draw_id" format="reference" />
+    </declare-styleable>
+
+    <attr name="SnbGridViewStyle" format="reference" />
+
+    <style name="DefSnbGridViewStyle">
+        <item name="snb_column">3</item>
+        <item name="snb_can_drag">false</item>
+        <item name="snb_max">9</item>
+        <item name="snb_show_only">false</item>
+        <item name="snb_close_draw_id">@drawable/snb_ic_clear_black_24dp</item>
+        <item name="snb_add_draw_id">@drawable/snb_ic_grid_add_btn</item>
+    </style>
+    <!-- </editor-fold> -->
+
 
 </resources>
