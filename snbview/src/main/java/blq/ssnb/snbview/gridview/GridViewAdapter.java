@@ -49,6 +49,12 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
             public String getUrl() {
                 return "android.resource://" + context.getPackageName() + "/" + mOption.getAddImgID();
             }
+
+            @NonNull
+            @Override
+            public String toString() {
+                return getUrl();
+            }
         };
         mGridItemBeans = new ArrayList<>();
     }

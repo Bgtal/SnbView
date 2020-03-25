@@ -15,9 +15,9 @@ allprojects {
 ## 项目依赖
 * 使用的时候需要在自己的项目中引用下面的包，不然会报错
 > implementation 'com.android.support:appcompat-v7:27.1.1'  
-> implementation 'com.github.Bgtal:SnbUtil:0.0.8'
-> implementation 'androidx.recyclerview:recyclerview:1.0.0'
-> implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+> implementation 'com.github.Bgtal:SnbUtil:0.0.8'  
+> implementation 'androidx.recyclerview:recyclerview:1.0.0'  
+> implementation 'androidx.constraintlayout:constraintlayout:1.1.3'  
 
 ### 说明
 

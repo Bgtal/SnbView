@@ -52,7 +52,7 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
     }
 
     public SnbGridView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
+        this(context, attrs, R.attr.SnbGridViewStyle);
     }
 
     public SnbGridView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {

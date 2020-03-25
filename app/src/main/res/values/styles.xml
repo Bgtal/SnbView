@@ -6,6 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="SnbGridViewStyle">@style/DefSnbGridViewStyle.demo</item>
+    </style>
+
+    <style name="DefSnbGridViewStyle.demo">
+        <item name="snb_close_draw_id">@drawable/snb_ic_expand_less_black_24dp</item>
+        <item name="snb_add_draw_id">@drawable/snb_ic_search_black_24dp</item>
     </style>
 
 </resources>
