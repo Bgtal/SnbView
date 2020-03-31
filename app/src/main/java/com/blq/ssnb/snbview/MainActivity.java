@@ -9,6 +9,7 @@ import com.blq.ssnb.snbview.demo.SnbExpandableTextViewFragment;
 import com.blq.ssnb.snbview.demo.SnbGradientProgressViewFragment;
 import com.blq.ssnb.snbview.demo.SnbGradientTextViewFragment;
 import com.blq.ssnb.snbview.demo.SnbGridViewFragment;
+import com.blq.ssnb.snbview.demo.SnbHistogramViewFragment;
 import com.blq.ssnb.snbview.demo.SnbLineViewFragment;
 import com.blq.ssnb.snbview.demo.SnbShapeFragment;
 import com.blq.ssnb.snbview.demo.SnbSmartSearchFragment;
@@ -60,6 +61,9 @@ public class MainActivity extends SimpleMenuActivity {
         beanList.add(new MenuBean()
                 .setMenuTitle("SnbGridView")
                 .setOnClickListener(v -> startToFragment(SnbGridViewFragment.class)));
+        beanList.add(new MenuBean()
+                .setMenuTitle("SnbHistogramView")
+                .setOnClickListener(v -> startToFragment(SnbHistogramViewFragment.class)));
         return beanList;
     }
 

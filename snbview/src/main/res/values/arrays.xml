@@ -20,4 +20,10 @@
         <item>#0000EE</item>
         <item>#0000FF</item>
     </array>
+
+    <array name="snb_histogram_color_def">
+        <item>#baa1fd</item>
+        <item>#875AFD</item>
+        <item>#7543FA</item>
+    </array>
 </resources>

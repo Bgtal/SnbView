@@ -13,6 +13,7 @@
 
     <attr name="snb_animDuration" format="integer" />
     <attr name="snb_max" format="integer|reference" />
+    <attr name="snb_progress" format="integer|reference" />
 
     <!-- </editor-fold> -->
 
@@ -148,7 +149,7 @@
 
     <declare-styleable name="SnbGradientProgressView">
         <attr name="snb_max" />
-        <attr name="snb_progress" format="integer|reference" />
+        <attr name="snb_progress" />
 
     </declare-styleable>
     <attr name="SnbGradientProgressViewStyle" format="reference" />
@@ -190,6 +191,32 @@
         <item name="snb_show_only">false</item>
         <item name="snb_close_draw_id">@drawable/snb_ic_clear_black_24dp</item>
         <item name="snb_add_draw_id">@drawable/snb_ic_grid_add_btn</item>
+    </style>
+    <!-- </editor-fold> -->
+
+    <!-- <editor-fold defaultstate="collapsed" desc="SnbHistoryView"> -->
+    <declare-styleable name="SnbHistogramView">
+        <attr name="snb_max" />
+        <attr name="snb_progress" />
+        <attr name="snb_gravity" format="enum">
+            <enum name="left" value="1" />
+            <enum name="top" value="2" />
+            <enum name="right" value="4" />
+            <enum name="bottom" value="8" />
+        </attr>
+        <attr name="snb_keep_min" format="boolean" />
+        <attr name="snb_progress_background" format="reference" />
+        <attr name="snb_high_light_color" format="reference|color" />
+    </declare-styleable>
+    <attr name="SnbHistogramViewStyle" format="reference" />
+
+    <style name="DefSnbHistogramViewStyle">
+        <item name="snb_max">100</item>
+        <item name="snb_progress">50</item>
+        <item name="snb_gravity">bottom</item>
+        <item name="snb_keep_min">true</item>
+        <item name="snb_progress_background">@array/snb_histogram_color_def</item>
+        <item name="snb_high_light_color">#7543FA</item>
     </style>
     <!-- </editor-fold> -->
 
