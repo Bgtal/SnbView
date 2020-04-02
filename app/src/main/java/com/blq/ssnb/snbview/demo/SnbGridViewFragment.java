@@ -83,6 +83,9 @@ public class SnbGridViewFragment extends BaseFragment {
     private View btn13;
     private View btn14;
 
+    private View btn21;
+    private View btn22;
+
     @Override
     protected int rootLayout() {
         return R.layout.fragment_snb_grid_view;
@@ -106,6 +109,9 @@ public class SnbGridViewFragment extends BaseFragment {
         btn12 = view.findViewById(R.id.tv_btn_12);
         btn13 = view.findViewById(R.id.tv_btn_13);
         btn14 = view.findViewById(R.id.tv_btn_14);
+
+        btn21 = view.findViewById(R.id.tv_btn_21);
+        btn22 = view.findViewById(R.id.tv_btn_22);
     }
 
     private GridItemBean getBean(int id) {
@@ -161,6 +167,12 @@ public class SnbGridViewFragment extends BaseFragment {
 
         btn14.setOnClickListener(v -> {
             mSnbGridView.setAddImgID(R.drawable.ic_navigation_back_btn);
+        });
+        btn21.setOnClickListener(v -> {
+            mSnbGridView.setImgSpace(8);
+        });
+        btn22.setOnClickListener(v -> {
+            mSnbGridView.setImgSpace(16);
         });
         status();
     }

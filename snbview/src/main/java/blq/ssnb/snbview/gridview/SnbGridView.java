@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Collections;
 import java.util.List;
 
+import blq.ssnb.snbutil.SnbDisplayUtil;
 import blq.ssnb.snbview.R;
 
 /**
@@ -46,6 +47,7 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
     private GridLayoutManager mGridLayoutManager;
     private ItemTouchHelper mItemTouchHelper;
     private OnItemTouchListener mItemTouchListener;
+    private GridSpacesDecoration mSpacesDecoration;
 
     public SnbGridView(@NonNull Context context) {
         this(context, null);
@@ -71,6 +73,7 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
         mOption.setJustShow(typedArray.getBoolean(R.styleable.SnbGridView_snb_show_only, mOption.isJustShow()));
         mOption.setDelBtnID(typedArray.getResourceId(R.styleable.SnbGridView_snb_close_draw_id, mOption.getDelBtnID()));
         mOption.setAddImgID(typedArray.getResourceId(R.styleable.SnbGridView_snb_add_draw_id, mOption.getAddImgID()));
+        mOption.setSpaces(typedArray.getResourceId(R.styleable.SnbGridView_snb_img_space, SnbDisplayUtil.dp2Px(getContext(), 4)));
         typedArray.recycle();
     }
 
@@ -173,6 +176,9 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
                 return mGestureDetector;
             }
         };
+        mSpacesDecoration = new GridSpacesDecoration(mOption.getSpaces());
+        addItemDecoration(mSpacesDecoration);
+
     }
 
     private void bindData(Context context) {
@@ -216,6 +222,10 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
 
     public void addImage(List<Bean> beans) {
         mGridAdapter.addItems(beans);
+    }
+
+    public void replace(List<Bean> beans) {
+        mGridAdapter.replace(beans);
     }
 
     public void clear() {
@@ -272,7 +282,6 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
         }
     }
 
-
     public int getAddImgID() {
         return mOption.getAddImgID();
     }
@@ -280,6 +289,15 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
     public void setAddImgID(int addImgID) {
         if (mOption.getAddImgID() != addImgID) {
             mOption.setAddImgID(addImgID);
+            mGridAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setImgSpace(int dp) {
+        int mdp = SnbDisplayUtil.dp2Px(getContext(), dp);
+        if(mOption.getSpaces() != mdp){
+            mOption.setSpaces(mdp);
+            mSpacesDecoration.setSpace(mdp);
             mGridAdapter.notifyDataSetChanged();
         }
     }

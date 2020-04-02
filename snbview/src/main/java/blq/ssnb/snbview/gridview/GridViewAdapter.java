@@ -232,6 +232,19 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
         }
     }
 
+    public void replace(List<Bean> beans) {
+        if (beans == null) {
+            mGridItemBeans.clear();
+            notifyDataSetChanged();
+            return;
+        }
+        if (this.mGridItemBeans != beans) {
+            mGridItemBeans.clear();
+            mGridItemBeans.addAll(beans);
+            notifyDataSetChanged();
+        }
+    }
+
 
     public static class MViewHolder extends RecyclerView.ViewHolder {
 

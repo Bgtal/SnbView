@@ -34,6 +34,8 @@ public class SnbGridViewOption {
     private SnbGridView.ActionListener mActionListener;
     //图片加载器
     private ImageLoader mImageLoader;
+    //图片之间的边距
+    private int spaces;
 
     public int getMaxSize() {
         return mMaxSize;
@@ -102,5 +104,13 @@ public class SnbGridViewOption {
 
     public void setAddImgID(int addImgID) {
         this.addImgID = addImgID;
+    }
+
+    public int getSpaces() {
+        return spaces;
+    }
+
+    public void setSpaces(int spaces) {
+        this.spaces = spaces;
     }
 }
