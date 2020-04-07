@@ -104,7 +104,10 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
     public int getItemCount() {
         //如果获得 8个大小， 小于9个
         if (mOption.isJustShow()) {
-            return mGridItemBeans.size();
+            if (mGridItemBeans.size() < mOption.getMaxSize()) {
+                return mGridItemBeans.size();
+            }
+            return mOption.getMaxSize();
         } else {
             if (mGridItemBeans.size() < mOption.getMaxSize()) {
                 return mGridItemBeans.size() + 1;
@@ -156,13 +159,10 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
             return true;
         }
         if (mOption.getMaxSize() < mGridItemBeans.size()) {
-            if (mGridItemBeans.size() > mOption.getMaxSize()) {
-                mGridItemBeans.subList(mOption.getMaxSize(), mGridItemBeans.size()).clear();
-            }
+            mGridItemBeans.subList(mOption.getMaxSize(), mGridItemBeans.size()).clear();
 //            for (int i = mGridItemBeans.size() - 1; i >= mOption.getMaxSize(); i--) {
 //                mGridItemBeans.remove(i);//方法同上，不过没验证过，到时候验证下
 //            }
-            notifyDataSetChanged();
             return true;
         }
         return false;
@@ -241,6 +241,7 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
         if (this.mGridItemBeans != beans) {
             mGridItemBeans.clear();
             mGridItemBeans.addAll(beans);
+            isFull();
             notifyDataSetChanged();
         }
     }
