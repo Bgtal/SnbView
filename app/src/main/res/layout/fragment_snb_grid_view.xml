@@ -153,5 +153,6 @@
         android:layout_height="wrap_content"
         app:snb_can_drag="true"
         app:snb_column="4"
-        app:snb_max="12" />
+        app:snb_max="12"
+        app:snb_img_space="30dp"/>
 </LinearLayout>

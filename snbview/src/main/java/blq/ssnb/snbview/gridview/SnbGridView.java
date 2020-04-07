@@ -73,7 +73,7 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
         mOption.setJustShow(typedArray.getBoolean(R.styleable.SnbGridView_snb_show_only, mOption.isJustShow()));
         mOption.setDelBtnID(typedArray.getResourceId(R.styleable.SnbGridView_snb_close_draw_id, mOption.getDelBtnID()));
         mOption.setAddImgID(typedArray.getResourceId(R.styleable.SnbGridView_snb_add_draw_id, mOption.getAddImgID()));
-        mOption.setSpaces(typedArray.getResourceId(R.styleable.SnbGridView_snb_img_space, SnbDisplayUtil.dp2Px(getContext(), 4)));
+        mOption.setSpaces(typedArray.getDimensionPixelOffset(R.styleable.SnbGridView_snb_img_space, SnbDisplayUtil.dp2Px(getContext(), 4)));
         typedArray.recycle();
     }
 
