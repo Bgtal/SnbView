@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 Map<String,String> libs = rootProject.ext.libs
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.blq.ssnb.snbview"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

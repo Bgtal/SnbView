@@ -26,4 +26,8 @@ public interface IGridItemBean {
     int getFlag();
 
     String getUrl();
+
+    boolean isSelect();
+
+    void setSelect(boolean isSelect);
 }

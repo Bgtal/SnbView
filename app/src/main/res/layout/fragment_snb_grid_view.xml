@@ -55,30 +55,44 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_btn_5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="可以拖动" />
-
-        <TextView
             android:id="@+id/tv_btn_6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:padding="4dp"
-            android:text="只是显示" />
+            android:text="显示模式" />
+
+        <TextView
+            android:id="@+id/tv_btn_7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="添加模式" />
+
+        <TextView
+            android:id="@+id/tv_btn_8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="选择模式" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="添加模式配置" />
 
         <TextView
             android:id="@+id/tv_btn_11"
@@ -105,26 +119,36 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableEnd="@drawable/snb_ic_grid_add_btn"
             android:gravity="center"
             android:padding="4dp"
-            android:text="修改添加图片"
-            android:drawableEnd="@drawable/snb_ic_grid_add_btn"/>
+            android:text="修改添加图片" />
 
         <TextView
             android:id="@+id/tv_btn_14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_navigation_back_btn"
             android:gravity="center"
             android:padding="8dp"
-            android:text="修改添加图片"
-            android:drawableEnd="@drawable/ic_navigation_back_btn" />
+            android:text="修改添加图片" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_btn_5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="可以拖动" />
 
         <TextView
             android:id="@+id/tv_btn_21"
@@ -146,6 +170,40 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_btn_31"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="设置比例2:1" />
+
+        <TextView
+            android:id="@+id/tv_btn_32"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="设置column=3" />
+
+        <TextView
+            android:id="@+id/tv_btn_33"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="设置column=1,比例4:1" />
+
+    </LinearLayout>
+
 
     <blq.ssnb.snbview.gridview.SnbGridView
         android:id="@+id/sgv_grid"
@@ -153,6 +211,7 @@
         android:layout_height="wrap_content"
         app:snb_can_drag="true"
         app:snb_column="4"
-        app:snb_max="12"
-        app:snb_img_space="30dp"/>
+        app:snb_grid_style="select"
+        app:snb_img_space="30dp"
+        app:snb_max="12" />
 </LinearLayout>

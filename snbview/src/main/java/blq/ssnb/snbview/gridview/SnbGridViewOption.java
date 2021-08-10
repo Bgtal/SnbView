@@ -1,7 +1,11 @@
 package blq.ssnb.snbview.gridview;
 
 import android.net.Uri;
-import android.widget.ImageView;
+
+import androidx.annotation.IntDef;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import blq.ssnb.snbview.R;
 
@@ -18,24 +22,72 @@ import blq.ssnb.snbview.R;
  * </pre>
  */
 public class SnbGridViewOption {
+    /**
+     * 纯展示
+     */
+    public static final int PICTURE_MODEL_SHOW = 0;
+    /**
+     * 从现有图片挑选
+     */
+    public static final int PICTURE_MODEL_SELECT = 1;
+    /**
+     * 从图片库选着
+     */
+    public static final int PICTURE_MODEL_CHOOSE = 2;
+
+
+    @IntDef({PICTURE_MODEL_SHOW, PICTURE_MODEL_SELECT, PICTURE_MODEL_CHOOSE})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface GridModel {
+    }
+
+    //展示模式
+    private int mGridModel = PICTURE_MODEL_SHOW;
     //最大数量
     private int mMaxSize = 9;
     //列数
     private int mColumn = 3;
-    //是否只是显示，false 会出现加减按钮
-    private boolean isJustShow = false;
+    //图片显示比例
+    private String mRatio = "1:1";
+
     //是否可以拖拽
     private boolean canDrag = true;
-    //删除图片
-    private int delBtnID = R.drawable.snb_ic_clear_black_24dp;
-    //添加图片
-    private int addImgID = R.drawable.snb_ic_grid_add_btn;
-    //动作回调
-    private SnbGridView.ActionListener mActionListener;
     //图片加载器
     private ImageLoader mImageLoader;
     //图片之间的边距
     private int spaces;
+    //动作回调
+    private SnbGridView.ActionListener mActionListener;
+
+    // <editor-fold defaultstate="collapsed" desc="图片选择模式">
+    //删除图片
+    private int deleteIcon = R.drawable.snb_ic_clear_black_24dp;
+    //添加图片
+    private int addBtnIcon = R.drawable.snb_ic_grid_add_btn;
+
+    // </editor-fold>
+
+    // <editor-fold defaultstate="collapsed" desc="图片挑选模式">
+    private int mSelectedIcon = R.drawable.snb_icon_selected;
+    private int mUnselectedIcon = R.drawable.snb_icon_unselected;
+    // </editor-fold>
+
+
+    public int getSelectedIcon() {
+        return mSelectedIcon;
+    }
+
+    public void setSelectedIcon(int selectedIcon) {
+        this.mSelectedIcon = selectedIcon;
+    }
+
+    public int getUnselectedIcon() {
+        return mUnselectedIcon;
+    }
+
+    public void setUnselectedIcon(int unselectedIcon) {
+        this.mUnselectedIcon = unselectedIcon;
+    }
 
     public int getMaxSize() {
         return mMaxSize;
@@ -54,11 +106,7 @@ public class SnbGridViewOption {
     }
 
     public boolean isJustShow() {
-        return isJustShow;
-    }
-
-    public void setJustShow(boolean justShow) {
-        isJustShow = justShow;
+        return mGridModel == PICTURE_MODEL_SHOW || mGridModel == PICTURE_MODEL_SELECT;
     }
 
     public boolean isCanDrag() {
@@ -90,20 +138,20 @@ public class SnbGridViewOption {
         mImageLoader = imageLoader;
     }
 
-    public int getDelBtnID() {
-        return delBtnID;
+    public int getDeleteIcon() {
+        return deleteIcon;
     }
 
-    public void setDelBtnID(int delBtnID) {
-        this.delBtnID = delBtnID;
+    public void setDeleteIcon(int deleteIcon) {
+        this.deleteIcon = deleteIcon;
     }
 
-    public int getAddImgID() {
-        return addImgID;
+    public int getAddBtnIcon() {
+        return addBtnIcon;
     }
 
-    public void setAddImgID(int addImgID) {
-        this.addImgID = addImgID;
+    public void setAddBtnIcon(int addBtnIcon) {
+        this.addBtnIcon = addBtnIcon;
     }
 
     public int getSpaces() {
@@ -113,4 +161,21 @@ public class SnbGridViewOption {
     public void setSpaces(int spaces) {
         this.spaces = spaces;
     }
+
+    public int getGridModel() {
+        return mGridModel;
+    }
+
+    public void setGridModel(@GridModel int model) {
+        mGridModel = model;
+    }
+
+    public String getRatio() {
+        return mRatio;
+    }
+
+    public void setRatio(String ratio) {
+        mRatio = ratio;
+    }
+
 }

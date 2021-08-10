@@ -7,6 +7,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GestureDetectorCompat;
@@ -14,8 +15,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import blq.ssnb.snbutil.SnbDisplayUtil;
 import blq.ssnb.snbview.R;
@@ -70,10 +71,21 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
         mOption.setMaxSize(typedArray.getInt(R.styleable.SnbGridView_snb_max, mOption.getMaxSize()));
         mOption.setColumn(typedArray.getInt(R.styleable.SnbGridView_snb_column, mOption.getColumn()));
         mOption.setCanDrag(typedArray.getBoolean(R.styleable.SnbGridView_snb_can_drag, mOption.isCanDrag()));
-        mOption.setJustShow(typedArray.getBoolean(R.styleable.SnbGridView_snb_show_only, mOption.isJustShow()));
-        mOption.setDelBtnID(typedArray.getResourceId(R.styleable.SnbGridView_snb_close_draw_id, mOption.getDelBtnID()));
-        mOption.setAddImgID(typedArray.getResourceId(R.styleable.SnbGridView_snb_add_draw_id, mOption.getAddImgID()));
+//        mOption.setJustShow(typedArray.getBoolean(R.styleable.SnbGridView_snb_show_only, mOption.isJustShow()));
+        mOption.setDeleteIcon(typedArray.getResourceId(R.styleable.SnbGridView_snb_close_draw_id, mOption.getDeleteIcon()));
+        mOption.setAddBtnIcon(typedArray.getResourceId(R.styleable.SnbGridView_snb_add_draw_id, mOption.getAddBtnIcon()));
+        mOption.setSelectedIcon(typedArray.getResourceId(R.styleable.SnbGridView_snb_selected_icon, mOption.getSelectedIcon()));
+        mOption.setUnselectedIcon(typedArray.getResourceId(R.styleable.SnbGridView_snb_unselected_icon, mOption.getUnselectedIcon()));
         mOption.setSpaces(typedArray.getDimensionPixelOffset(R.styleable.SnbGridView_snb_img_space, SnbDisplayUtil.dp2Px(getContext(), 4)));
+        mOption.setGridModel(typedArray.getInt(R.styleable.SnbGridView_snb_grid_model, mOption.getGridModel()));
+        //这里是适配老版本
+        boolean isJustShow = typedArray.getBoolean(R.styleable.SnbGridView_snb_show_only, mOption.isJustShow());
+        if (isJustShow) {
+            mOption.setGridModel(SnbGridViewOption.PICTURE_MODEL_SHOW);
+        } else {
+            mOption.setGridModel(SnbGridViewOption.PICTURE_MODEL_CHOOSE);
+        }
+
         typedArray.recycle();
     }
 
@@ -91,11 +103,12 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
                 int fromPosition = viewHolder.getAdapterPosition();//得到item原来的position
                 int toPosition = target.getAdapterPosition();//得到目标position
                 if (mOption.isCanDrag()) {
-                    if (!mOption.isJustShow()) {
-                        if ((toPosition == mGridAdapter.getAddIndex() || mGridAdapter.getAddIndex() == fromPosition)) {
-                            return true;
-                        }
+                    int addIndex = mGridAdapter.getAddIndex();
+//                    if (!mOption.isJustShow()) {
+                    if ((toPosition == addIndex || addIndex == fromPosition)) {
+                        return true;
                     }
+//                    }
                 }
                 //滑动事件
                 mGridAdapter.getGridItemBeans().add(toPosition, mGridAdapter.getGridItemBeans().remove(fromPosition));
@@ -162,9 +175,7 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
                             if (child != null) {
                                 RecyclerView.ViewHolder vh = getChildViewHolder(child);
                                 if (mOption.isCanDrag()) {
-                                    if (mOption.isJustShow()) {
-                                        mItemTouchHelper.startDrag(vh);
-                                    } else if (vh.getLayoutPosition()
+                                    if (vh.getLayoutPosition()
                                             != mGridAdapter.getAddIndex()) {
                                         mItemTouchHelper.startDrag(vh);
                                     }
@@ -195,6 +206,31 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
         }
     }
 
+
+    public void setColumnAndRatio(int columns, String ratio) {
+        if (mOption.getColumn() != columns) {
+            mOption.setColumn(columns);
+            mGridLayoutManager.setSpanCount(columns);
+        }
+        setRatio(ratio);
+    }
+
+    public void setRatio(String ratio) {
+        boolean is = Pattern.matches("[0-9]*:[0-9]*", ratio);
+        if (!mOption.getRatio().equals(ratio) && is) {
+            mOption.setRatio(ratio);
+            mGridAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setSelectIcon(@DrawableRes int id) {
+        mOption.setSelectedIcon(id);
+    }
+
+    public void setUnSelectIcon(@DrawableRes int id) {
+        mOption.setUnselectedIcon(id);
+    }
+
     public int getColumn() {
         return mOption.getColumn();
     }
@@ -203,12 +239,8 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
         //如果数量与最后一次不一样就要改变
         if (mOption.getMaxSize() != maxSize) {
             //如果设置的最大数小于当前实际数量，说明需要移除多余的内容
-            int diff = mGridAdapter.getDataCount() - maxSize;
-            if (diff > 0) {
-                mGridAdapter.getGridItemBeans().subList(maxSize, mGridAdapter.getDataCount()).clear();
-            }
             mOption.setMaxSize(maxSize);
-            mGridAdapter.notifyDataSetChanged();
+            mGridAdapter.maxSizeChange();
         }
     }
 
@@ -244,15 +276,34 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
         return mOption.isCanDrag();
     }
 
+    /**
+     * 该方法不再使用，请使用{@link #setGridStyle(int)}
+     *
+     * @param yes
+     */
+    @Deprecated
     public void setShowOnly(boolean yes) {
-        if (this.mOption.isJustShow() != yes) {
+       /* if (this.mOption.isJustShow() != yes) {
             this.mOption.setJustShow(yes);
             mGridAdapter.notifyDataSetChanged();
+        }*/
+        if (yes) {
+            setGridStyle(SnbGridViewOption.PICTURE_MODEL_SHOW);
+        } else {
+            setGridStyle(SnbGridViewOption.PICTURE_MODEL_CHOOSE);
         }
     }
 
+    @Deprecated
     public boolean isShowOnly() {
         return mOption.isJustShow();
+    }
+
+    public void setGridStyle(@SnbGridViewOption.GridModel int style) {
+        if (mOption.getGridModel() != style) {
+            mOption.setGridModel(style);
+            mGridAdapter.notifyDataSetChanged();
+        }
     }
 
     public ActionListener getActionListener() {
@@ -272,30 +323,30 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
     }
 
     public int getDelBtnID() {
-        return mOption.getDelBtnID();
+        return mOption.getDeleteIcon();
     }
 
     public void setDelBtnID(int delBtnID) {
-        if (mOption.getDelBtnID() != delBtnID) {
-            mOption.setDelBtnID(delBtnID);
+        if (mOption.getDeleteIcon() != delBtnID) {
+            mOption.setDeleteIcon(delBtnID);
             mGridAdapter.notifyDataSetChanged();
         }
     }
 
     public int getAddImgID() {
-        return mOption.getAddImgID();
+        return mOption.getAddBtnIcon();
     }
 
     public void setAddImgID(int addImgID) {
-        if (mOption.getAddImgID() != addImgID) {
-            mOption.setAddImgID(addImgID);
+        if (mOption.getAddBtnIcon() != addImgID) {
+            mOption.setAddBtnIcon(addImgID);
             mGridAdapter.notifyDataSetChanged();
         }
     }
 
     public void setImgSpace(int dp) {
         int mdp = SnbDisplayUtil.dp2Px(getContext(), dp);
-        if(mOption.getSpaces() != mdp){
+        if (mOption.getSpaces() != mdp) {
             mOption.setSpaces(mdp);
             mSpacesDecoration.setSpace(mdp);
             mGridAdapter.notifyDataSetChanged();

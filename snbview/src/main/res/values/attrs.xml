@@ -181,6 +181,13 @@
         <attr name="snb_close_draw_id" format="reference" />
         <attr name="snb_add_draw_id" format="reference" />
         <attr name="snb_img_space" format="dimension|reference" />
+        <attr name="snb_grid_model" format="enum">
+            <enum name="show" value="0"/>
+            <enum name="select" value="1"/>
+            <enum name="choose" value="2"/>
+        </attr>
+        <attr name="snb_selected_icon" format="reference"/>
+        <attr name="snb_unselected_icon" format="reference"/>
     </declare-styleable>
 
     <attr name="SnbGridViewStyle" format="reference" />
@@ -193,6 +200,9 @@
         <item name="snb_close_draw_id">@drawable/snb_ic_clear_black_24dp</item>
         <item name="snb_add_draw_id">@drawable/snb_ic_grid_add_btn</item>
         <item name="snb_img_space">4dp</item>
+        <item name="snb_grid_model">choose</item>
+        <item name="snb_selected_icon">@drawable/snb_icon_selected</item>
+        <item name="snb_unselected_icon">@drawable/snb_icon_unselected</item>
     </style>
     <!-- </editor-fold> -->
 

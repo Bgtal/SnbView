@@ -9,8 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import blq.ssnb.baseconfigure.BaseFragment;
+import blq.ssnb.snbutil.SnbLog;
+import blq.ssnb.snbutil.SnbToast;
 import blq.ssnb.snbview.gridview.IGridItemBean;
 import blq.ssnb.snbview.gridview.SnbGridView;
+import blq.ssnb.snbview.gridview.SnbGridViewOption;
 
 /**
  * <pre>
@@ -30,6 +33,7 @@ public class SnbGridViewFragment extends BaseFragment {
         private int flag;
         private String imgUrl;
         private String imgName;
+        private boolean isSelect;
 
         public String getImgUrl() {
             return imgUrl;
@@ -56,6 +60,16 @@ public class SnbGridViewFragment extends BaseFragment {
             return imgUrl;
         }
 
+        @Override
+        public boolean isSelect() {
+            return isSelect;
+        }
+
+        @Override
+        public void setSelect(boolean isSelect) {
+            this.isSelect = isSelect;
+        }
+
         public void setFlag(int flag) {
             this.flag = flag;
         }
@@ -77,6 +91,8 @@ public class SnbGridViewFragment extends BaseFragment {
     private View btn4;
     private TextView btn5;
     private TextView btn6;
+    private View btn7;
+    private View btn8;
 
     private View btn11;
     private View btn12;
@@ -85,6 +101,11 @@ public class SnbGridViewFragment extends BaseFragment {
 
     private View btn21;
     private View btn22;
+
+    private View btn31;
+    private View btn32;
+    private View btn33;
+
 
     @Override
     protected int rootLayout() {
@@ -103,6 +124,8 @@ public class SnbGridViewFragment extends BaseFragment {
         btn4 = view.findViewById(R.id.tv_btn_4);
         btn5 = view.findViewById(R.id.tv_btn_5);
         btn6 = view.findViewById(R.id.tv_btn_6);
+        btn7 = view.findViewById(R.id.tv_btn_7);
+        btn8 = view.findViewById(R.id.tv_btn_8);
 
 
         btn11 = view.findViewById(R.id.tv_btn_11);
@@ -112,6 +135,10 @@ public class SnbGridViewFragment extends BaseFragment {
 
         btn21 = view.findViewById(R.id.tv_btn_21);
         btn22 = view.findViewById(R.id.tv_btn_22);
+
+        btn31 = view.findViewById(R.id.tv_btn_31);
+        btn32 = view.findViewById(R.id.tv_btn_32);
+        btn33 = view.findViewById(R.id.tv_btn_33);
     }
 
     private GridItemBean getBean(int id) {
@@ -138,52 +165,50 @@ public class SnbGridViewFragment extends BaseFragment {
             beans.add(getBean(R.drawable.ic_filter_9_black_24dp));
             mSnbGridView.addImage(beans);
         });
-        btn3.setOnClickListener(v -> {
-            mSnbGridView.setMaxSize(5);
-        });
-        btn4.setOnClickListener(v -> {
-            mSnbGridView.setMaxSize(9);
-        });
+        btn3.setOnClickListener(v -> mSnbGridView.setMaxSize(5));
+        btn4.setOnClickListener(v -> mSnbGridView.setMaxSize(9));
         btn5.setOnClickListener(v -> {
             mSnbGridView.setDragEnable(!mSnbGridView.isDragEnable());
             status();
         });
-        btn6.setOnClickListener(v -> {
-            mSnbGridView.setShowOnly(!mSnbGridView.isShowOnly());
-            status();
-        });
+        btn6.setOnClickListener(v -> mSnbGridView.setGridStyle(SnbGridViewOption.PICTURE_MODEL_SHOW));
+        btn7.setOnClickListener(v -> mSnbGridView.setGridStyle(SnbGridViewOption.PICTURE_MODEL_CHOOSE));
+        btn8.setOnClickListener(v -> mSnbGridView.setGridStyle(SnbGridViewOption.PICTURE_MODEL_SELECT));
 
-        btn11.setOnClickListener(v -> {
-            mSnbGridView.setDelBtnID(R.drawable.snb_ic_clear_black_24dp);
-        });
+        btn11.setOnClickListener(v -> mSnbGridView.setDelBtnID(R.drawable.snb_ic_clear_black_24dp));
 
-        btn12.setOnClickListener(v -> {
-            mSnbGridView.setDelBtnID(R.drawable.ic_navigation_close_btn);
-        });
+        btn12.setOnClickListener(v -> mSnbGridView.setDelBtnID(R.drawable.ic_navigation_close_btn));
 
-        btn13.setOnClickListener(v -> {
-            mSnbGridView.setAddImgID(R.drawable.snb_ic_grid_add_btn);
-        });
+        btn13.setOnClickListener(v -> mSnbGridView.setAddImgID(R.drawable.snb_ic_grid_add_btn));
 
-        btn14.setOnClickListener(v -> {
-            mSnbGridView.setAddImgID(R.drawable.ic_navigation_back_btn);
-        });
-        btn21.setOnClickListener(v -> {
-            mSnbGridView.setImgSpace(8);
-        });
-        btn22.setOnClickListener(v -> {
-            mSnbGridView.setImgSpace(16);
-        });
+        btn14.setOnClickListener(v -> mSnbGridView.setAddImgID(R.drawable.ic_navigation_back_btn));
+        btn21.setOnClickListener(v -> mSnbGridView.setImgSpace(8));
+        btn22.setOnClickListener(v -> mSnbGridView.setImgSpace(16));
         status();
+
+        btn31.setOnClickListener(v -> mSnbGridView.setRatio("2:1"));
+        btn32.setOnClickListener(v -> mSnbGridView.setColumn(3));
+        btn33.setOnClickListener(v -> mSnbGridView.setColumnAndRatio(1, "4:1"));
+
+
     }
 
     private void status() {
         btn5.setText("可以拖动(" + mSnbGridView.isDragEnable() + ")");
-        btn6.setText("只是显示(" + mSnbGridView.isShowOnly() + ")");
     }
 
     @Override
     protected void bindEvent() {
+        mSnbGridView.setActionListener(new SnbGridView.ActionListener() {
+            @Override
+            public void onItemClick(View view, int index) {
+                SnbToast.showSmart("item被点击了");
+            }
 
+            @Override
+            public void onAddBtnClick(View view) {
+                SnbToast.showSmart("添加被点击了");
+            }
+        });
     }
 }

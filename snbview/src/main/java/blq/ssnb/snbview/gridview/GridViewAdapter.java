@@ -9,13 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.DrawableRes;
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import blq.ssnb.snbutil.SnbLog;
 import blq.ssnb.snbview.R;
 
 /**
@@ -37,7 +38,10 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
     private IGridItemBean addBtnBean;
 
     public GridViewAdapter(Context context, SnbGridViewOption option) {
-        this.mOption = option == null ? new SnbGridViewOption() : option;
+        if (option == null) {
+            throw new NullPointerException("传入的 SnbGridViewOption 对线为空");
+        }
+        this.mOption = option;
         addBtnBean = new IGridItemBean() {
 
             @Override
@@ -47,7 +51,17 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
 
             @Override
             public String getUrl() {
-                return "android.resource://" + context.getPackageName() + "/" + mOption.getAddImgID();
+                return "android.resource://" + context.getPackageName() + "/" + mOption.getAddBtnIcon();
+            }
+
+            @Override
+            public boolean isSelect() {
+                return false;
+            }
+
+            @Override
+            public void setSelect(boolean isSelect) {
+
             }
 
             @NonNull
@@ -64,7 +78,7 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
     public MViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.snb_item_grid_view, viewGroup, false);
         MViewHolder mViewHolder = new MViewHolder(view);
-        mViewHolder.setDeleteBtn(mOption.getDelBtnID());
+        mViewHolder.setActionBtn(mOption.getDeleteIcon());
         return mViewHolder;
     }
 
@@ -72,11 +86,18 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
     public void onBindViewHolder(@NonNull final MViewHolder mViewHolder, int position) {
         IGridItemBean bean = getBean(position);
         Log.e(">>>>", position + ":" + bean.toString());
-        mViewHolder.deleteBtn.setOnClickListener(v -> removeItem(mViewHolder.getAdapterPosition()));
-        mViewHolder.updateDeleteView(mOption.getDelBtnID());
+        //设置图标
+        initAction(mViewHolder, bean);
+        //设置ation 监听
+        mViewHolder.actionBtn.setOnClickListener(v -> {
+            doAction(mViewHolder, bean);
+        });
+
+        //判断下是否为特殊图标
 
         if (bean.getFlag() == IGridItemBean.FLAG_IMG_BTN) {
-            mViewHolder.deleteBtn.setVisibility(View.GONE);
+            //如果是特殊图标
+            mViewHolder.actionBtn.setVisibility(View.GONE);
             mViewHolder.picImageView.setOnClickListener(v -> {
                 if (mOption.getActionListener() != null) {
                     mOption.getActionListener().onAddBtnClick(v);
@@ -84,7 +105,7 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
             });
             mViewHolder.picImageView.setImageURI(Uri.parse(bean.getUrl()));
         } else {
-            mViewHolder.deleteBtn.setVisibility(View.VISIBLE);
+            mViewHolder.actionBtn.setVisibility(View.VISIBLE);
             mViewHolder.picImageView.setOnClickListener(v -> {
                 if (mOption.getActionListener() != null) {
                     mOption.getActionListener().onItemClick(v, mViewHolder.getAdapterPosition());
@@ -95,26 +116,63 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
                 mOption.getImageLoader().display(bean.getUrl(), mViewHolder.picImageView);
             }
         }
-        if (mOption.isJustShow()) {
-            mViewHolder.deleteBtn.setVisibility(View.GONE);
+        mViewHolder.setRation(mOption.getRatio());
+    }
+
+    private void initAction(MViewHolder viewHolder, IGridItemBean bean) {
+        switch (mOption.getGridModel()) {
+            case SnbGridViewOption.PICTURE_MODEL_SHOW:
+                viewHolder.actionBtn.setVisibility(View.GONE);
+                break;
+            case SnbGridViewOption.PICTURE_MODEL_SELECT:
+                viewHolder.actionBtn.setVisibility(View.VISIBLE);
+                if (bean.isSelect()) {
+                    viewHolder.setActionBtn(mOption.getSelectedIcon());
+                } else {
+                    viewHolder.setActionBtn(mOption.getUnselectedIcon());
+                }
+                break;
+            case SnbGridViewOption.PICTURE_MODEL_CHOOSE:
+                viewHolder.actionBtn.setVisibility(View.VISIBLE);
+                viewHolder.setActionBtn(mOption.getDeleteIcon());
+                break;
+
+        }
+    }
+
+    private void doAction(MViewHolder mViewHolder, IGridItemBean bean) {
+        switch (mOption.getGridModel()) {
+            case SnbGridViewOption.PICTURE_MODEL_SHOW:
+                //什么都不干
+                break;
+            case SnbGridViewOption.PICTURE_MODEL_SELECT:
+                bean.setSelect(!bean.isSelect());
+                notifyItemChanged(mViewHolder.getAdapterPosition());
+                break;
+            case SnbGridViewOption.PICTURE_MODEL_CHOOSE:
+                removeItem(mViewHolder.getAdapterPosition());
+                break;
+
         }
     }
 
     @Override
     public int getItemCount() {
-        //如果获得 8个大小， 小于9个
-        if (mOption.isJustShow()) {
-            if (mGridItemBeans.size() < mOption.getMaxSize()) {
-                return mGridItemBeans.size();
-            }
-            return mOption.getMaxSize();
-        } else {
-            if (mGridItemBeans.size() < mOption.getMaxSize()) {
-                return mGridItemBeans.size() + 1;
-            } else {
-                return mOption.getMaxSize();
-            }
+        int size;
+        switch (mOption.getGridModel()) {
+            case SnbGridViewOption.PICTURE_MODEL_CHOOSE:
+                if (mGridItemBeans.size() < mOption.getMaxSize()) {
+                    size = mGridItemBeans.size() + 1;
+                } else {
+                    size = mOption.getMaxSize();
+                }
+                break;
+            case SnbGridViewOption.PICTURE_MODEL_SHOW:
+            case SnbGridViewOption.PICTURE_MODEL_SELECT:
+            default:
+                size = Math.min(mGridItemBeans.size(), mOption.getMaxSize());
         }
+        return size;
     }
 
     /**
@@ -123,23 +181,19 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
      * @return
      */
     public int getAddIndex() {
-        if (mOption.isJustShow()) {
-            return -1;
-        } else {
-            if (isFull()) {
-                return -1;
-            }
-            return getItemCount() - 1;
-        }
-    }
+        int index = -1;
+        switch (mOption.getGridModel()) {
+            case SnbGridViewOption.PICTURE_MODEL_CHOOSE:
+                if (!isFull()) {
+                    index = getItemCount() - 1;
+                }
+                break;
+            case SnbGridViewOption.PICTURE_MODEL_SELECT:
+            case SnbGridViewOption.PICTURE_MODEL_SHOW:
+            default:
 
-    /**
-     * 获取实际数据个数
-     *
-     * @return
-     */
-    public int getDataCount() {
-        return mGridItemBeans.size();
+        }
+        return index;
     }
 
     private IGridItemBean getBean(int index) {
@@ -219,16 +273,21 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
 
     public void removeItem(int index) {
         mGridItemBeans.remove(index);//移除
-        if (mOption.isJustShow()) {//如果只是显示就移除就够了
-            notifyItemRemoved(index);
-        } else {
-            //有加图选项
-            if (getItemCount() == mOption.getMaxSize()) { //如果移除后获得个数任然为9 ，那么就刷新所有布局
-                notifyItemRemoved(index);//移除后
-                notifyItemChanged(mOption.getMaxSize() - 1);//要更新最后的加号
-            } else {
-                notifyItemRemoved(index);//否者就刷新移除内容
-            }
+        notifyItemRemoved(index);
+        switch (mOption.getGridModel()) {
+            case SnbGridViewOption.PICTURE_MODEL_CHOOSE:
+                //有加图选项
+                if (getItemCount() == mOption.getMaxSize()) { //如果移除后获得个数任然为9 ，那么就刷新所有布局
+//                    notifyItemRemoved(index);//移除后
+                    notifyItemChanged(mOption.getMaxSize() - 1);//要更新最后的加号
+//                } else {
+//                    notifyItemRemoved(index);//否者就刷新移除内容
+                }
+                break;
+            case SnbGridViewOption.PICTURE_MODEL_SELECT:
+            case SnbGridViewOption.PICTURE_MODEL_SHOW:
+            default:
+//                notifyItemRemoved(index);
         }
     }
 
@@ -246,28 +305,40 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
         }
     }
 
+    public void maxSizeChange() {
+        isFull();
+        notifyDataSetChanged();
+    }
 
     public static class MViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView picImageView;
-        private ImageView deleteBtn;
+        private ImageView actionBtn;
 
-        private int deleteBtnID;
+        private int actionBtnDrawable;
 
         public MViewHolder(@NonNull View itemView) {
             super(itemView);
             picImageView = itemView.findViewById(R.id.img_pic_view);
-            deleteBtn = itemView.findViewById(R.id.img_pic_close_btn);
+            actionBtn = itemView.findViewById(R.id.img_pic_close_btn);
         }
 
-        public void setDeleteBtn(@DrawableRes int resID) {
-            deleteBtnID = resID;
-            deleteBtn.setImageResource(resID);
+        public void setActionBtn(@DrawableRes int resID) {
+            if (resID != actionBtnDrawable) {
+                actionBtnDrawable = resID;
+                actionBtn.setImageResource(resID);
+            }
         }
 
-        public void updateDeleteView(int resID) {
-            if (deleteBtnID != resID) {
-                setDeleteBtn(resID);
+        public void setRation(String ratio) {
+
+            if (picImageView.getLayoutParams() instanceof ConstraintLayout.LayoutParams) {
+                ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) picImageView.getLayoutParams();
+                if (!params.dimensionRatio.equals(ratio)) {
+                    SnbLog.e(">>>>>>:刷新比例：" + ratio);
+                    params.dimensionRatio = ratio;
+                    picImageView.setLayoutParams(params);
+                }
             }
         }
     }
