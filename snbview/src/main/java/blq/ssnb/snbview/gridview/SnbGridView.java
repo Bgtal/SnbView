@@ -68,6 +68,14 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
     private void initAttr(Context context, AttributeSet attrs, int defStyle) {
         mOption = new SnbGridViewOption();
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SnbGridView, defStyle, R.style.DefSnbGridViewStyle);
+        //这里是适配老版本
+        boolean isJustShow = typedArray.getBoolean(R.styleable.SnbGridView_snb_show_only, mOption.isJustShow());
+        if (isJustShow) {
+            mOption.setGridModel(SnbGridViewOption.PICTURE_MODEL_SHOW);
+        } else {
+            mOption.setGridModel(SnbGridViewOption.PICTURE_MODEL_CHOOSE);
+        }
+
         mOption.setMaxSize(typedArray.getInt(R.styleable.SnbGridView_snb_max, mOption.getMaxSize()));
         mOption.setColumn(typedArray.getInt(R.styleable.SnbGridView_snb_column, mOption.getColumn()));
         mOption.setCanDrag(typedArray.getBoolean(R.styleable.SnbGridView_snb_can_drag, mOption.isCanDrag()));
@@ -78,13 +86,7 @@ public class SnbGridView<Bean extends IGridItemBean> extends RecyclerView {
         mOption.setUnselectedIcon(typedArray.getResourceId(R.styleable.SnbGridView_snb_unselected_icon, mOption.getUnselectedIcon()));
         mOption.setSpaces(typedArray.getDimensionPixelOffset(R.styleable.SnbGridView_snb_img_space, SnbDisplayUtil.dp2Px(getContext(), 4)));
         mOption.setGridModel(typedArray.getInt(R.styleable.SnbGridView_snb_grid_model, mOption.getGridModel()));
-        //这里是适配老版本
-        boolean isJustShow = typedArray.getBoolean(R.styleable.SnbGridView_snb_show_only, mOption.isJustShow());
-        if (isJustShow) {
-            mOption.setGridModel(SnbGridViewOption.PICTURE_MODEL_SHOW);
-        } else {
-            mOption.setGridModel(SnbGridViewOption.PICTURE_MODEL_CHOOSE);
-        }
+
 
         typedArray.recycle();
     }
