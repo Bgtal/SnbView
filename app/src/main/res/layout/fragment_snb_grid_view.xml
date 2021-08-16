@@ -211,7 +211,7 @@
         android:layout_height="wrap_content"
         app:snb_can_drag="true"
         app:snb_column="4"
-        app:snb_grid_style="select"
         app:snb_img_space="30dp"
+        app:snb_grid_model="show"
         app:snb_max="12" />
 </LinearLayout>

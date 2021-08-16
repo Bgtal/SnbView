@@ -94,7 +94,6 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
         });
 
         //判断下是否为特殊图标
-
         if (bean.getFlag() == IGridItemBean.FLAG_IMG_BTN) {
             //如果是特殊图标
             mViewHolder.actionBtn.setVisibility(View.GONE);
@@ -105,7 +104,11 @@ class GridViewAdapter<Bean extends IGridItemBean> extends RecyclerView.Adapter<G
             });
             mViewHolder.picImageView.setImageURI(Uri.parse(bean.getUrl()));
         } else {
-            mViewHolder.actionBtn.setVisibility(View.VISIBLE);
+//            if(mOption.getGridModel() == SnbGridViewOption.PICTURE_MODEL_SHOW){
+//
+//            }else{
+//                mViewHolder.actionBtn.setVisibility(View.VISIBLE);
+//            }
             mViewHolder.picImageView.setOnClickListener(v -> {
                 if (mOption.getActionListener() != null) {
                     mOption.getActionListener().onItemClick(v, mViewHolder.getAdapterPosition());
